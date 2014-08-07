@@ -85,8 +85,8 @@
 {
     //TODO: interact to user
     //TODO: with animation
-    [aWindow setLevel:keepPinned ? kCGDesktopWindowLevel:NSNormalWindowLevel];
-    [aWindow acceptsMouseMovedEvents];
+    //[aWindow setIgnoresMouseEvents:NO];
+    [aWindow setLevel:keepPinned ? kCGDesktopIconWindowLevel+1:NSNormalWindowLevel];
 }
 
 - (void)updateCurrentUIElement
@@ -94,14 +94,12 @@
     NSWindow *window = [self currentWindow];
     
     NSLog(@"window title: %@", window.title);
-    //[self keepPinnedToDesktop:YES forWindow:[self currentWindow] andResponseToUserInteraction:YES withAnimation:YES];
+    [self keepPinnedToDesktop:YES forWindow:[self currentWindow] andResponseToUserInteraction:YES withAnimation:YES];
 }
 
 - (void)performTimerBasedUpdate
 {
     [self updateCurrentUIElement];
-    
-    [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(performTimerBasedUpdate) userInfo:nil repeats:NO];
 }
 
 @end
