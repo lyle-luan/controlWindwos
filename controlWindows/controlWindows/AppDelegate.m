@@ -9,6 +9,9 @@
 #import "AppDelegate.h"
 
 @implementation AppDelegate
+{
+    @private AXUIElementRef frontMostWindowElement;
+}
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
@@ -94,6 +97,8 @@
     NSWindow *window = [self currentWindow];
     
     NSLog(@"window title: %@", window.title);
+    NSLog(@"window level: %ld", (long)window.level);
+    [self resizeFocusedApplication:nil];
     //[self keepPinnedToDesktop:YES forWindow:[self currentWindow] andResponseToUserInteraction:YES withAnimation:YES];
 }
 
@@ -102,6 +107,94 @@
     [self updateCurrentUIElement];
     
     [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(performTimerBasedUpdate) userInfo:nil repeats:NO];
+}
+
+- (void)resizeFocusedApplication: (AXUIElementRef)mouseUIElementRef
+{
+    AXUIElementRef systemWideElement = AXUIElementCreateSystemWide();
+    AXUIElementRef childElement;
+    
+    AXError result;
+    
+    result = AXUIElementCopyAttributeValue(systemWideElement, kAXFocusedApplicationAttribute, (CFTypeRef *)&childElement);
+    
+    if (result == kAXErrorSuccess)
+    {
+        childElement = [self getParentAXUIElementRef:childElement];
+        NSLog(@"%@",[self stringDescriptionOfUIElement:childElement]);
+    }
+    else
+    {
+    }
+}
+
+- (id)valueOfAttribute: (NSString *)attribute type: (AXUIElementRef)element
+{
+    id result = nil;
+    CFArrayRef attrNames = nil;
+    
+    //TODO:spectacle AXUIElementCopyAttributeNames how to do it
+    AXUIElementCopyAttributeNames(element, &attrNames);
+    
+    NSArray *attributeNames = (__bridge NSArray *)attrNames;
+    
+    if (attributeNames)
+    {
+        if (([attributeNames indexOfObject:(NSString *)attribute] != NSNotFound) &&
+            (AXUIElementCopyAttributeValue(element, (__bridge CFStringRef)attribute, (CFTypeRef *)((void *)&result)) == kAXErrorSuccess))
+        {
+            
+        }
+    }
+    
+    return result;
+}
+
+- (AXUIElementRef)getParentAXUIElementRef:(AXUIElementRef)element
+{
+    AXUIElementRef topElement;
+    do
+    {
+        topElement = element;
+        element = (__bridge AXUIElementRef)[self valueOfAttribute:NSAccessibilityParentAttribute type:element];
+    }
+    while (element != nil);
+    
+    return topElement;
+}
+
+- (NSString *)stringDescriptionOfUIElement:(AXUIElementRef)element
+{
+    CFArrayRef theName;
+    NSMutableString *descriptionString = [[NSMutableString alloc] init];
+    
+    AXUIElementCopyAttributeNames(element, &theName);
+    NSArray *theNames = (__bridge NSArray *)theName;
+    
+    CFIndex numOfNames;
+    CFIndex nameIndex;
+    
+    if (theNames)
+    {
+        numOfNames = [theNames count];
+        if (numOfNames)
+        {
+            [descriptionString appendString:@"\nAttributes:\n"];
+        }
+        
+        for (nameIndex=0; nameIndex<numOfNames; ++nameIndex)
+        {
+            NSString *theName = nil;
+            BOOL isSettable = NO;
+            
+            theName = [theNames objectAtIndex:nameIndex];
+            
+            AXUIElementIsAttributeSettable(element, (__bridge CFStringRef)theName, &isSettable);
+            
+            [descriptionString appendFormat:@"    %@%@:    '%@'\n", theName, (isSettable?@" (W)":@""), @""];
+        }
+    }
+    return descriptionString;
 }
 
 @end
