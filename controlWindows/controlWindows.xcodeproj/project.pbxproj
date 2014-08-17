@@ -18,6 +18,7 @@
 		D6EA4AEE198CA9DB00C20E75 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6EA4ACD198CA9DA00C20E75 /* Cocoa.framework */; };
 		D6EA4AF6198CA9DB00C20E75 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D6EA4AF4198CA9DB00C20E75 /* InfoPlist.strings */; };
 		D6EA4AF8198CA9DB00C20E75 /* controlWindowsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D6EA4AF7198CA9DB00C20E75 /* controlWindowsTests.m */; };
+		DD2ECADD19A0A30A00AECFC7 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD2ECADC19A0A30A00AECFC7 /* Carbon.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +51,7 @@
 		D6EA4AF3198CA9DB00C20E75 /* controlWindowsTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "controlWindowsTests-Info.plist"; sourceTree = "<group>"; };
 		D6EA4AF5198CA9DB00C20E75 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D6EA4AF7198CA9DB00C20E75 /* controlWindowsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = controlWindowsTests.m; sourceTree = "<group>"; };
+		DD2ECADC19A0A30A00AECFC7 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +59,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD2ECADD19A0A30A00AECFC7 /* Carbon.framework in Frameworks */,
 				D6EA4ACE198CA9DA00C20E75 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -95,6 +98,7 @@
 		D6EA4ACC198CA9DA00C20E75 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DD2ECADC19A0A30A00AECFC7 /* Carbon.framework */,
 				D6EA4ACD198CA9DA00C20E75 /* Cocoa.framework */,
 				D6EA4AEC198CA9DB00C20E75 /* XCTest.framework */,
 				D6EA4ACF198CA9DA00C20E75 /* Other Frameworks */,
@@ -466,6 +470,7 @@
 				D6EA4AFD198CA9DB00C20E75 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D6EA4AFE198CA9DB00C20E75 /* Build configuration list for PBXNativeTarget "controlWindowsTests" */ = {
 			isa = XCConfigurationList;
@@ -474,6 +479,7 @@
 				D6EA4B00198CA9DB00C20E75 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

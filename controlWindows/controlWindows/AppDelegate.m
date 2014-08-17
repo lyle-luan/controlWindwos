@@ -7,17 +7,73 @@
 //
 
 #import "AppDelegate.h"
+#import <Carbon/Carbon.h>
+
+OSStatus hotKeyEventHandler(EventHandlerCallRef handlerCall, EventRef event, void *data);
+
+OSStatus hotKeyEventHandler(EventHandlerCallRef handlerCall, EventRef event, void *data)
+{
+    EventHotKeyID hotKeyID;
+    
+    OSStatus error = GetEventParameter(event, kEventParamDirectObject, typeEventHotKeyID, NULL, sizeof(EventHotKeyID), NULL, &hotKeyID);
+    
+    if (error)
+    {
+        return error;
+    }
+    
+    if (hotKeyID.id == 1)
+    {
+        switch (GetEventKind(event))
+        {
+            case kEventHotKeyPressed:
+            {
+                NSLog(@"z pressed");
+                break;
+            }
+            default:
+            {
+                break;
+            }
+        }
+    }
+    return noErr;
+}
 
 @implementation AppDelegate
-{
-    @private AXUIElementRef frontMostWindowElement;
-}
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-//    NSLog(@"window title: %@", [self currentWindow].title);
-//    [self keepPinnedToDesktop:YES forWindow:[self currentWindow] andResponseToUserInteraction:YES withAnimation:YES];
-    [self performTimerBasedUpdate];
+    [self registerHotKey];
+    [self installHotKeyEventHandler];
+}
+
+- (void)installHotKeyEventHandler
+{
+    EventTypeSpec typeSpec;
+    
+    typeSpec.eventClass = kEventClassKeyboard;
+    typeSpec.eventKind = kEventHotKeyPressed;
+    
+    InstallApplicationEventHandler(&hotKeyEventHandler, 1, &typeSpec, NULL, NULL);
+}
+
+- (void)registerHotKey
+{
+    EventHotKeyID hotKeyID;
+    EventHotKeyRef hotKeyRef;
+    
+    OSStatus error;
+    
+    hotKeyID.signature = 'rt2h';
+    hotKeyID.id = 1;
+    
+    error = RegisterEventHotKey((UInt32)6, (UInt32)controlKey, hotKeyID, GetEventDispatcherTarget(), 0, &hotKeyRef);
+    
+    if (error)
+    {
+        NSLog(@"There was a problem registering hot key %d.", 6);
+    }
 }
 
 - (NSWindow*) currentWindow
@@ -90,111 +146,6 @@
     //TODO: with animation
     [aWindow setLevel:keepPinned ? kCGDesktopWindowLevel:NSNormalWindowLevel];
     [aWindow acceptsMouseMovedEvents];
-}
-
-- (void)updateCurrentUIElement
-{
-    NSWindow *window = [self currentWindow];
-    
-    NSLog(@"window title: %@", window.title);
-    NSLog(@"window level: %ld", (long)window.level);
-    [self resizeFocusedApplication:nil];
-    //[self keepPinnedToDesktop:YES forWindow:[self currentWindow] andResponseToUserInteraction:YES withAnimation:YES];
-}
-
-- (void)performTimerBasedUpdate
-{
-    [self updateCurrentUIElement];
-    
-    [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(performTimerBasedUpdate) userInfo:nil repeats:NO];
-}
-
-- (void)resizeFocusedApplication: (AXUIElementRef)mouseUIElementRef
-{
-    AXUIElementRef systemWideElement = AXUIElementCreateSystemWide();
-    AXUIElementRef childElement;
-    
-    AXError result;
-    
-    result = AXUIElementCopyAttributeValue(systemWideElement, kAXFocusedApplicationAttribute, (CFTypeRef *)&childElement);
-    
-    if (result == kAXErrorSuccess)
-    {
-        childElement = [self getParentAXUIElementRef:childElement];
-        NSLog(@"%@",[self stringDescriptionOfUIElement:childElement]);
-    }
-    else
-    {
-    }
-}
-
-- (id)valueOfAttribute: (NSString *)attribute type: (AXUIElementRef)element
-{
-    id result = nil;
-    CFArrayRef attrNames = nil;
-    
-    //TODO:spectacle AXUIElementCopyAttributeNames how to do it
-    AXUIElementCopyAttributeNames(element, &attrNames);
-    
-    NSArray *attributeNames = (__bridge NSArray *)attrNames;
-    
-    if (attributeNames)
-    {
-        if (([attributeNames indexOfObject:(NSString *)attribute] != NSNotFound) &&
-            (AXUIElementCopyAttributeValue(element, (__bridge CFStringRef)attribute, (CFTypeRef *)((void *)&result)) == kAXErrorSuccess))
-        {
-            
-        }
-    }
-    
-    return result;
-}
-
-- (AXUIElementRef)getParentAXUIElementRef:(AXUIElementRef)element
-{
-    AXUIElementRef topElement;
-    do
-    {
-        topElement = element;
-        element = (__bridge AXUIElementRef)[self valueOfAttribute:NSAccessibilityParentAttribute type:element];
-    }
-    while (element != nil);
-    
-    return topElement;
-}
-
-- (NSString *)stringDescriptionOfUIElement:(AXUIElementRef)element
-{
-    CFArrayRef theName;
-    NSMutableString *descriptionString = [[NSMutableString alloc] init];
-    
-    AXUIElementCopyAttributeNames(element, &theName);
-    NSArray *theNames = (__bridge NSArray *)theName;
-    
-    CFIndex numOfNames;
-    CFIndex nameIndex;
-    
-    if (theNames)
-    {
-        numOfNames = [theNames count];
-        if (numOfNames)
-        {
-            [descriptionString appendString:@"\nAttributes:\n"];
-        }
-        
-        for (nameIndex=0; nameIndex<numOfNames; ++nameIndex)
-        {
-            NSString *theName = nil;
-            BOOL isSettable = NO;
-            
-            theName = [theNames objectAtIndex:nameIndex];
-            
-            AXUIElementIsAttributeSettable(element, (__bridge CFStringRef)theName, &isSettable);
-            
-            [descriptionString appendFormat:@"    %@%@:    '%@'\n", theName, (isSettable?@" (W)":@""), @""];
-        }
-    }
-    return descriptionString;
 }
 
 @end
