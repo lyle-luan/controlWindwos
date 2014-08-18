@@ -51,22 +51,55 @@
     return nil;
 }
 
++ (void)notBotherMeWindow
+{
+    NSWindow *currentWindow = [WindowController currentWindow];
+    
+    [WindowController reLayout:currentWindow];
+    [WindowController keepPinnedToDesktop:YES forWindow:[WindowController currentWindow] andResponseToUserInteraction:YES withAnimation:YES];
+    [WindowController canotMoveWindow:currentWindow];
+    [WindowController canotResizeWindow:currentWindow];
+}
+
++ (void)botherMeAgainWindow
+{
+    NSWindow *currentWindow = [WindowController currentWindow];
+}
+
++ (void)reLayout: (NSWindow *)aWindow
+{
+    [aWindow setFrame:[WindowController getNewWindowFrame:aWindow] display:YES animate:YES];
+}
+
++ (void)restoreLayout
+{
+    
+}
+
 + (void)keepPinnedToDesktop:(BOOL)keepPinned forWindow:(NSWindow *)aWindow andResponseToUserInteraction:(BOOL)interacted withAnimation:(BOOL)animated
 {
     //TODO: interact to user
     //TODO: with animation
     [aWindow setLevel:keepPinned ? kCGDesktopIconWindowLevel+1:NSNormalWindowLevel];
+}
+
++ (void)canotMoveWindow: (NSWindow *)aWindow
+{
     [aWindow setMovable:NO];
+}
+
++ (void)canotResizeWindow: (NSWindow *)aWindow
+{
     [[NSNotificationCenter defaultCenter] removeObserver:self name:NSWindowDidResizeNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowDidResize:) name:NSWindowDidResizeNotification object:nil];
 }
 
-+ (void)resizeWindow: (NSWindow *)aWindow
++ (NSRect)getNewWindowFrame: (NSWindow *)aWindow
 {
     NSRect frame = [aWindow frame];
     frame.origin.x = 0;
     frame.origin.y = 0;
-    [aWindow setFrame:frame display:YES animate:YES];
+    return frame;
 }
 
 + (void)windowDidResize:(NSNotification *)notification
