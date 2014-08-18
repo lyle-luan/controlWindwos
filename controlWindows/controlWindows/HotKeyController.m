@@ -29,6 +29,7 @@ OSStatus hotKeyEventHandler(EventHandlerCallRef handlerCall, EventRef event, voi
         {
             case kEventHotKeyPressed:
             {
+                [WindowController resizeWindow:[WindowController currentWindow]];
                 [WindowController keepPinnedToDesktop:YES forWindow:[WindowController currentWindow] andResponseToUserInteraction:YES withAnimation:YES];
                 break;
             }

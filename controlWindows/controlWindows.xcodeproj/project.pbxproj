@@ -21,6 +21,7 @@
 		DD2ECADD19A0A30A00AECFC7 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD2ECADC19A0A30A00AECFC7 /* Carbon.framework */; };
 		DD2ECAE019A1D4AB00AECFC7 /* HotKeyController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD2ECADF19A1D4AB00AECFC7 /* HotKeyController.m */; };
 		DD2ECAE319A1D6C400AECFC7 /* WindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD2ECAE219A1D6C400AECFC7 /* WindowController.m */; };
+		DD2ECAE819A1F0BB00AECFC7 /* XXXNSWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = DD2ECAE719A1F0BB00AECFC7 /* XXXNSWindow.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,8 @@
 		DD2ECADF19A1D4AB00AECFC7 /* HotKeyController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HotKeyController.m; sourceTree = "<group>"; };
 		DD2ECAE119A1D6C400AECFC7 /* WindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WindowController.h; sourceTree = "<group>"; };
 		DD2ECAE219A1D6C400AECFC7 /* WindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WindowController.m; sourceTree = "<group>"; };
+		DD2ECAE619A1F0BB00AECFC7 /* XXXNSWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXXNSWindow.h; sourceTree = "<group>"; };
+		DD2ECAE719A1F0BB00AECFC7 /* XXXNSWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXXNSWindow.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +128,7 @@
 		D6EA4AD3198CA9DB00C20E75 /* controlWindows */ = {
 			isa = PBXGroup;
 			children = (
+				DD2ECAE519A1F06600AECFC7 /* Toolkits */,
 				D6EA4ADF198CA9DB00C20E75 /* AppDelegate.h */,
 				D6EA4AE0198CA9DB00C20E75 /* AppDelegate.m */,
 				D6EA4AE2198CA9DB00C20E75 /* MainMenu.xib */,
@@ -166,6 +170,15 @@
 				D6EA4AF4198CA9DB00C20E75 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		DD2ECAE519A1F06600AECFC7 /* Toolkits */ = {
+			isa = PBXGroup;
+			children = (
+				DD2ECAE619A1F0BB00AECFC7 /* XXXNSWindow.h */,
+				DD2ECAE719A1F0BB00AECFC7 /* XXXNSWindow.m */,
+			);
+			name = Toolkits;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -269,6 +282,7 @@
 				DD2ECAE019A1D4AB00AECFC7 /* HotKeyController.m in Sources */,
 				DD2ECAE319A1D6C400AECFC7 /* WindowController.m in Sources */,
 				D6EA4AE1198CA9DB00C20E75 /* AppDelegate.m in Sources */,
+				DD2ECAE819A1F0BB00AECFC7 /* XXXNSWindow.m in Sources */,
 				D6EA4ADA198CA9DB00C20E75 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

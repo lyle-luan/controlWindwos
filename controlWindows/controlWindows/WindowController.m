@@ -17,7 +17,7 @@
 
 @implementation WindowController
 
-+ (NSWindow*)currentWindow
++ (NSWindow *)currentWindow
 {
     NSWindow* currentWindowMaybe = nil;
     
@@ -56,7 +56,22 @@
     //TODO: interact to user
     //TODO: with animation
     [aWindow setLevel:keepPinned ? kCGDesktopIconWindowLevel+1:NSNormalWindowLevel];
-    //[aWindow acceptsMouseMovedEvents];
+    [aWindow setMovable:NO];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:NSWindowDidResizeNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowDidResize:) name:NSWindowDidResizeNotification object:nil];
+}
+
++ (void)resizeWindow: (NSWindow *)aWindow
+{
+    NSRect frame = [aWindow frame];
+    frame.origin.x = 0;
+    frame.origin.y = 0;
+    [aWindow setFrame:frame display:YES animate:YES];
+}
+
++ (void)windowDidResize:(NSNotification *)notification
+{
+    NSLog(@"resize back");
 }
 
 @end
