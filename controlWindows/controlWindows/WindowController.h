@@ -10,10 +10,9 @@
 
 @interface WindowController : NSObject <NSWindowDelegate>
 
-+ (NSWindow *)currentWindow;
+@property NSWindow *currentWindow;
 
-+ (void)keepPinnedToDesktop:(BOOL)keepPinned forWindow:(NSWindow *)aWindow andResponseToUserInteraction:(BOOL)interacted withAnimation:(BOOL)animated;
-
-+ (void)resizeWindow: (NSWindow *)aWindow;
+- (void)dontBotherMeWindow;
++ (WindowController *)getInstance;
 
 @end
