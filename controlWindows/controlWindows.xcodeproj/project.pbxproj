@@ -21,7 +21,6 @@
 		DD2ECADD19A0A30A00AECFC7 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD2ECADC19A0A30A00AECFC7 /* Carbon.framework */; };
 		DD2ECAE019A1D4AB00AECFC7 /* HotKeyController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD2ECADF19A1D4AB00AECFC7 /* HotKeyController.m */; };
 		DD2ECAE319A1D6C400AECFC7 /* WindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD2ECAE219A1D6C400AECFC7 /* WindowController.m */; };
-		DD2ECAE819A1F0BB00AECFC7 /* XXXNSWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = DD2ECAE719A1F0BB00AECFC7 /* XXXNSWindow.m */; };
 		DD2ECAED19A2E7CD00AECFC7 /* OriginalWindowStateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DD2ECAEC19A2E7CD00AECFC7 /* OriginalWindowStateManager.m */; };
 		DD2ECAF019A325A000AECFC7 /* OriginalWindowStateItem.m in Sources */ = {isa = PBXBuildFile; fileRef = DD2ECAEF19A325A000AECFC7 /* OriginalWindowStateItem.m */; };
 		DD63833B19A32F65002A01A8 /* WindowPositionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DD63833A19A32F65002A01A8 /* WindowPositionManager.m */; };
@@ -62,14 +61,13 @@
 		DD2ECADF19A1D4AB00AECFC7 /* HotKeyController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HotKeyController.m; sourceTree = "<group>"; };
 		DD2ECAE119A1D6C400AECFC7 /* WindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WindowController.h; sourceTree = "<group>"; };
 		DD2ECAE219A1D6C400AECFC7 /* WindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WindowController.m; sourceTree = "<group>"; };
-		DD2ECAE619A1F0BB00AECFC7 /* XXXNSWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXXNSWindow.h; sourceTree = "<group>"; };
-		DD2ECAE719A1F0BB00AECFC7 /* XXXNSWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXXNSWindow.m; sourceTree = "<group>"; };
 		DD2ECAEB19A2E7CD00AECFC7 /* OriginalWindowStateManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OriginalWindowStateManager.h; sourceTree = "<group>"; };
 		DD2ECAEC19A2E7CD00AECFC7 /* OriginalWindowStateManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OriginalWindowStateManager.m; sourceTree = "<group>"; };
 		DD2ECAEE19A325A000AECFC7 /* OriginalWindowStateItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OriginalWindowStateItem.h; sourceTree = "<group>"; };
 		DD2ECAEF19A325A000AECFC7 /* OriginalWindowStateItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OriginalWindowStateItem.m; sourceTree = "<group>"; };
 		DD63833919A32F65002A01A8 /* WindowPositionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WindowPositionManager.h; sourceTree = "<group>"; };
 		DD63833A19A32F65002A01A8 /* WindowPositionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WindowPositionManager.m; sourceTree = "<group>"; };
+		DD90D69D19A874D900259162 /* Toolkits.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Toolkits.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,8 +187,7 @@
 		DD2ECAE519A1F06600AECFC7 /* Toolkits */ = {
 			isa = PBXGroup;
 			children = (
-				DD2ECAE619A1F0BB00AECFC7 /* XXXNSWindow.h */,
-				DD2ECAE719A1F0BB00AECFC7 /* XXXNSWindow.m */,
+				DD90D69D19A874D900259162 /* Toolkits.h */,
 			);
 			name = Toolkits;
 			sourceTree = "<group>";
@@ -308,7 +305,6 @@
 				DD2ECAF019A325A000AECFC7 /* OriginalWindowStateItem.m in Sources */,
 				DD2ECAE319A1D6C400AECFC7 /* WindowController.m in Sources */,
 				D6EA4AE1198CA9DB00C20E75 /* AppDelegate.m in Sources */,
-				DD2ECAE819A1F0BB00AECFC7 /* XXXNSWindow.m in Sources */,
 				D6EA4ADA198CA9DB00C20E75 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

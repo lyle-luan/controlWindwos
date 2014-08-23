@@ -46,5 +46,6 @@ enum WINDOW_POSITION_ENUM
 @interface WindowPositionManager : NSObject
 
 + (void)reLayoutWindowsPosition;
++ (void)reLayoutWindowPositionToRight;
 
 @end

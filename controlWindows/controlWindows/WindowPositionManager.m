@@ -15,6 +15,7 @@
 + (void)relayoutFullScreenPosition;
 + (void)relayoutLeftRightPosition;
 + (void)relayoutLeftRIghtTopRightBottomPosition;
++ (void)relayoutRightPosition;
 
 @end
 
@@ -46,6 +47,11 @@
     }
 }
 
++ (void)reLayoutWindowPositionToRight
+{
+    [self relayoutRightPosition];
+}
+
 @end
 
 @implementation WindowPositionManager(WindowPositionManagerPrivate)
@@ -65,6 +71,25 @@
 + (void)relayoutLeftRIghtTopRightBottomPosition
 {
     
+}
+
++ (void)relayoutRightPosition
+{
+    OriginalWindowStateItem *fullScreenWindowStateItem = [OriginalWindowStateManager getInstance].originalWindowStateList.firstObject;
+    NSWindow *fullScreenWindow = fullScreenWindowStateItem.window;
+    [fullScreenWindow setFrame:[self rightScreenPosition] display:YES animate:YES];
+}
+
++ (NSRect)rightScreenPosition
+{
+    NSRect frame;
+    CGFloat ScreenHalfWidth = [NSScreen mainScreen].frame.size.width/2;
+    
+    frame.origin.x      = ScreenHalfWidth;
+    frame.origin.y      = 0.0f;
+    frame.size.width    = ScreenHalfWidth;
+    frame.size.height   = [NSScreen mainScreen].frame.size.height;
+    return frame;
 }
 
 + (NSRect)fullScreenPosition

@@ -6,6 +6,8 @@
 //  Copyright (c) 2014年 ll. All rights reserved.
 //
 
+//TODO: read disk file
+
 #import "OriginalWindowStateManager.h"
 #import "OriginalWindowStateItem.h"
 
@@ -32,9 +34,21 @@
     
 }
 
-- (OriginalWindowStateItem *)lastItem
+- (void)removeElement: (OriginalWindowStateItem *)anElement
 {
-    return self.originalWindowStateList.lastObject;
+    [self.originalWindowStateList removeObject:anElement];
+}
+
+-(OriginalWindowStateItem *)riginalWindowStateItemOfCurrentWindow: (NSWindow *)aWindow
+{
+    for (OriginalWindowStateItem *indexItem in self.originalWindowStateList)
+    {
+        if (CGRectEqualToRect(indexItem.window.frame, aWindow.frame) == YES)
+        {
+            return indexItem;
+        }
+    }
+    return nil;
 }
 
 + (id)allocWithZone:(struct _NSZone *)zone

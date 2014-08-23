@@ -17,6 +17,7 @@
 + (OriginalWindowStateManager *)getInstance;
 - (void)addElement: (OriginalWindowStateItem *)anItem;
 - (void)removeElementAtPositon: (NSInteger)aPosition;
-- (OriginalWindowStateItem *)lastItem;
+- (void)removeElement: (OriginalWindowStateItem *)anElement;
+-(OriginalWindowStateItem *)riginalWindowStateItemOfCurrentWindow: (NSWindow *)aWindow;
 
 @end

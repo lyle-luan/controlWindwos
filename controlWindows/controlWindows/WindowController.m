@@ -16,9 +16,11 @@
 - (NSWindow *)topWindow;
 - (void)backupOriginalState;
 - (void)reLayoutWindows;
-- (void)spinCurrentWindowToDesktop:(BOOL)spinned isUnderIcon:(BOOL)underIcon responseToUserInteraction:(BOOL)interacted;
-- (void)dontMoveCurrentWindow;
-- (void)dontResizeCurrentWindow;
+- (void)spinCurrentWindowToDesktopUnderIcon:(BOOL)isUnderIcon responseToUserInteraction:(BOOL)interacted;
+- (void)cantMoveCurrentWindow;
+- (void)canMoveCurrentWindow;
+- (void)reLayoutWindowTopAlways;
+- (void)floatCurrentWindowTop;
 
 @end
 
@@ -44,19 +46,30 @@
     self.currentWindow = [self topWindow];
     [self backupOriginalState];
     [self reLayoutWindows];
-    [self spinCurrentWindowToDesktop:YES isUnderIcon:NO responseToUserInteraction:YES];
-    [self dontMoveCurrentWindow];
-    [self dontResizeCurrentWindow];
+    [self spinCurrentWindowToDesktopUnderIcon:NO responseToUserInteraction:YES];
+    [self cantMoveCurrentWindow];
 }
 
-- (void)canBotherMeAgainWindow
+- (void)comeBackWindow
 {
-    
+    self.currentWindow = [self topWindow];
+    OriginalWindowStateItem *originalWindowStateItem = [[OriginalWindowStateManager getInstance] riginalWindowStateItemOfCurrentWindow: self.currentWindow];
+    if (originalWindowStateItem != nil)
+    {
+        [self.currentWindow setFrame:originalWindowStateItem.originalFrame display:YES animate:YES];
+        [self.currentWindow setLevel:originalWindowStateItem.originalWindowLevel];
+        [self.currentWindow setMovable:originalWindowStateItem.isMovable];
+        [[OriginalWindowStateManager getInstance] removeElement:originalWindowStateItem];
+    }
 }
 
 - (void)needAlltimeWindow
 {
-    
+    self.currentWindow = [self topWindow];
+    [self backupOriginalState];
+    [self reLayoutWindowTopAlways];
+    [self floatCurrentWindowTop];
+    [self canMoveCurrentWindow];
 }
 
 - (void)notNeedAlltimeWindow
@@ -114,43 +127,32 @@
     [WindowPositionManager reLayoutWindowsPosition];
 }
 
-- (void)spinCurrentWindowToDesktop:(BOOL)spinned isUnderIcon:(BOOL)underIcon responseToUserInteraction:(BOOL)interacted
+- (void)reLayoutWindowTopAlways
 {
-    if (spinned == YES)
+    [WindowPositionManager reLayoutWindowPositionToRight];
+}
+
+- (void)spinCurrentWindowToDesktopUnderIcon:(BOOL)isUnderIcon responseToUserInteraction:(BOOL)interacted
+{
+    if (isUnderIcon == NO)
     {
         [self.currentWindow setLevel:kCGDesktopIconWindowLevel+1];
     }
-    else
-    {
-        [self.currentWindow setLevel:NSNormalWindowLevel];
-    }
 }
 
-- (void)dontMoveCurrentWindow
+- (void)floatCurrentWindowTop
+{
+    [self.currentWindow setLevel:NSFloatingWindowLevel];
+}
+
+- (void)cantMoveCurrentWindow
 {
     [self.currentWindow setMovable:NO];
 }
 
-- (void)dontResizeCurrentWindow
+- (void)canMoveCurrentWindow
 {
-    [self.currentWindow setShowsResizeIndicator:NO];
-    [[self.currentWindow standardWindowButton:NSWindowZoomButton] setHidden:YES];
-    
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:NSWindowDidResizeNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowDidResize:) name:NSWindowDidResizeNotification object:nil];
-}
-
-- (void)windowDidResize:(NSNotification *)notification
-{
-    NSLog(@"resize back");
-}
-
-+ (void)resizeWindow: (NSWindow *)aWindow
-{
-    NSRect frame = [aWindow frame];
-    frame.origin.x = 0;
-    frame.origin.y = 0;
-    [aWindow setFrame:frame display:YES animate:YES];
+    [self.currentWindow setMovable:YES];
 }
 
 - (NSWindow *)retrospectTopWindow:(NSWindow *)thisWindow

@@ -23,19 +23,25 @@ OSStatus hotKeyEventHandler(EventHandlerCallRef handlerCall, EventRef event, voi
         return error;
     }
     
-    if (hotKeyID.id == 1)
+    switch (hotKeyID.id)
     {
-        switch (GetEventKind(event))
+        case 1:
         {
-            case kEventHotKeyPressed:
-            {
-                [[WindowController getInstance] dontBotherMeWindow];
-                break;
-            }
-            default:
-            {
-                break;
-            }
+            [[WindowController getInstance] dontBotherMeWindow];
+            break;
+        }
+        case 2:
+        {
+            [[WindowController getInstance] comeBackWindow];
+            break;
+        }
+        case 3:
+        {
+            [[WindowController getInstance] needAlltimeWindow];
+        }
+        default:
+        {
+            break;
         }
     }
     return noErr;
@@ -66,7 +72,7 @@ OSStatus hotKeyEventHandler(EventHandlerCallRef handlerCall, EventRef event, voi
     
     OSStatus error;
     
-    hotKeyID.signature = 'rt2h';
+    hotKeyID.signature = 'zzzz';
     hotKeyID.id = 1;
     
     error = RegisterEventHotKey((UInt32)6, (UInt32)controlKey, hotKeyID, GetEventDispatcherTarget(), 0, &hotKeyRef);
@@ -74,6 +80,27 @@ OSStatus hotKeyEventHandler(EventHandlerCallRef handlerCall, EventRef event, voi
     if (error)
     {
         NSLog(@"There was a problem registering hot key %d.", 6);
+    }
+    
+    
+    hotKeyID.signature = 'xxxx';
+    hotKeyID.id = 2;
+    
+    error = RegisterEventHotKey((UInt32)7, (UInt32)controlKey, hotKeyID, GetEventDispatcherTarget(), 0, &hotKeyRef);
+    
+    if (error)
+    {
+        NSLog(@"There was a problem registering hot key %d.", 7);
+    }
+    
+    hotKeyID.signature = 'cccc';
+    hotKeyID.id = 3;
+    
+    error = RegisterEventHotKey((UInt32)8, (UInt32)controlKey, hotKeyID, GetEventDispatcherTarget(), 0, &hotKeyRef);
+    
+    if (error)
+    {
+        NSLog(@"There was a problem registering hot key %d.", 8);
     }
 }
 

@@ -12,7 +12,10 @@
 
 @property NSWindow *currentWindow;
 
-- (void)dontBotherMeWindow;
 + (WindowController *)getInstance;
+
+- (void)dontBotherMeWindow;
+- (void)comeBackWindow;
+- (void)needAlltimeWindow;
 
 @end
