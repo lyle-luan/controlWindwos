@@ -7,17 +7,81 @@
 //
 
 #import "WindowController.h"
+#import "OriginalWindowStateItem.h"
+#import "OriginalWindowStateManager.h"
+#import "WindowPositionManager.h"
 
 @interface WindowController(WindowControllerPrivate)
 
-+ (NSWindow *)retrospectTopWindow:(NSWindow *)thisWindow;
-+ (BOOL)isWindowShouldIgnored:(NSWindow *)aWindow;
+- (NSWindow *)topWindow;
+- (void)backupOriginalState;
+- (void)reLayoutWindows;
+- (void)spinCurrentWindowToDesktopUnderIcon:(BOOL)isUnderIcon responseToUserInteraction:(BOOL)interacted;
+- (void)cantMoveCurrentWindow;
+- (void)canMoveCurrentWindow;
+- (void)reLayoutWindowTopAlways;
+- (void)floatCurrentWindowTop;
 
 @end
 
 @implementation WindowController
 
-+ (NSWindow *)currentWindow
++ (WindowController *)getInstance
+{
+    static WindowController *windowController = nil;
+    if (windowController == nil)
+    {
+        windowController = [[super allocWithZone:nil] init];
+    }
+    return windowController;
+}
+
++ (id)allocWithZone:(struct _NSZone *)zone
+{
+    return [self getInstance];
+}
+
+- (void)dontBotherMeWindow
+{
+    self.currentWindow = [self topWindow];
+    [self backupOriginalState];
+    [self reLayoutWindows];
+    [self spinCurrentWindowToDesktopUnderIcon:NO responseToUserInteraction:YES];
+    [self cantMoveCurrentWindow];
+}
+
+- (void)comeBackWindow
+{
+    self.currentWindow = [self topWindow];
+    OriginalWindowStateItem *originalWindowStateItem = [[OriginalWindowStateManager getInstance] originalWindowStateItemOfCurrentWindow: self.currentWindow];
+    if (originalWindowStateItem != nil)
+    {
+        [self.currentWindow setFrame:originalWindowStateItem.originalFrame display:YES animate:YES];
+        [self.currentWindow setLevel:originalWindowStateItem.originalWindowLevel];
+        [self.currentWindow setMovable:originalWindowStateItem.isMovable];
+        [[OriginalWindowStateManager getInstance] removeElement:originalWindowStateItem];
+    }
+}
+
+- (void)needAlltimeWindow
+{
+    self.currentWindow = [self topWindow];
+    [self backupOriginalState];
+    [self reLayoutWindowTopAlways];
+    [self floatCurrentWindowTop];
+    [self canMoveCurrentWindow];
+}
+
+- (void)notNeedAlltimeWindow
+{
+    
+}
+
+@end
+
+@implementation WindowController(WindowControllerPrivate)
+
+- (NSWindow *)topWindow
 {
     NSWindow* currentWindowMaybe = nil;
     
@@ -51,67 +115,47 @@
     return nil;
 }
 
-+ (void)notBotherMeWindow
+- (void)backupOriginalState
 {
-    NSWindow *currentWindow = [WindowController currentWindow];
-    
-    [WindowController reLayout:currentWindow];
-    [WindowController keepPinnedToDesktop:YES forWindow:[WindowController currentWindow] andResponseToUserInteraction:YES withAnimation:YES];
-    [WindowController canotMoveWindow:currentWindow];
-    [WindowController canotResizeWindow:currentWindow];
+    OriginalWindowStateItem *newItem = nil;
+    newItem = [[OriginalWindowStateItem alloc] initWithNSWindow:self.currentWindow];
+    [[OriginalWindowStateManager getInstance] addElement:newItem];
 }
 
-+ (void)botherMeAgainWindow
+- (void)reLayoutWindows
 {
-    NSWindow *currentWindow = [WindowController currentWindow];
+    [WindowPositionManager reLayoutWindowsPosition];
 }
 
-+ (void)reLayout: (NSWindow *)aWindow
+- (void)reLayoutWindowTopAlways
 {
-    [aWindow setFrame:[WindowController getNewWindowFrame:aWindow] display:YES animate:YES];
+    [WindowPositionManager reLayoutWindowPositionToRight];
 }
 
-+ (void)restoreLayout
+- (void)spinCurrentWindowToDesktopUnderIcon:(BOOL)isUnderIcon responseToUserInteraction:(BOOL)interacted
 {
-    
+    if (isUnderIcon == NO)
+    {
+        [self.currentWindow setLevel:kCGDesktopIconWindowLevel+1];
+    }
 }
 
-+ (void)keepPinnedToDesktop:(BOOL)keepPinned forWindow:(NSWindow *)aWindow andResponseToUserInteraction:(BOOL)interacted withAnimation:(BOOL)animated
+- (void)floatCurrentWindowTop
 {
-    //TODO: interact to user
-    //TODO: with animation
-    [aWindow setLevel:keepPinned ? kCGDesktopIconWindowLevel+1:NSNormalWindowLevel];
+    [self.currentWindow setLevel:NSFloatingWindowLevel];
 }
 
-+ (void)canotMoveWindow: (NSWindow *)aWindow
+- (void)cantMoveCurrentWindow
 {
-    [aWindow setMovable:NO];
+    [self.currentWindow setMovable:NO];
 }
 
-+ (void)canotResizeWindow: (NSWindow *)aWindow
+- (void)canMoveCurrentWindow
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:NSWindowDidResizeNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowDidResize:) name:NSWindowDidResizeNotification object:nil];
+    [self.currentWindow setMovable:YES];
 }
 
-+ (NSRect)getNewWindowFrame: (NSWindow *)aWindow
-{
-    NSRect frame = [aWindow frame];
-    frame.origin.x = 0;
-    frame.origin.y = 0;
-    return frame;
-}
-
-+ (void)windowDidResize:(NSNotification *)notification
-{
-    NSLog(@"resize back");
-}
-
-@end
-
-@implementation WindowController(WindowControllerPrivate)
-
-+ (NSWindow *)retrospectTopWindow:(NSWindow *)thisWindow
+- (NSWindow *)retrospectTopWindow:(NSWindow *)thisWindow
 {
     while ([thisWindow parentWindow])
     {
@@ -121,7 +165,7 @@
     return thisWindow;
 }
 
-+ (BOOL)isWindowShouldIgnored:(NSWindow *)aWindow
+- (BOOL)isWindowShouldIgnored:(NSWindow *)aWindow
 {
     if ([aWindow isKindOfClass:[NSPanel class]])
     {
