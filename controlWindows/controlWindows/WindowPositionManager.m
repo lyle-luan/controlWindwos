@@ -23,13 +23,14 @@
 
 @implementation WindowPositionManager
 
-+ (void)reLayoutBottomWindowsPosition
++ (void)reLayoutBottomWindowsPositionWhenThisWindowBottom: (NSWindow *)aWindow
 {
-    //TODO:WindowStateManager -> WindowStateManager
-    //TODO:numOfBottomWindows = [WindowStateManager getInstance].numOfBottomOriginalWindows + currentNumWindows
-    NSInteger numOfBottomWindows = 0;
-    
-    switch ([WindowStateManager getInstance].numOfBottomWindows)
+    NSInteger numOfBottomWindows = [WindowStateManager getInstance].numOfBottomWindows;
+    if (aWindow.level != kCGDesktopIconWindowLevel)
+    {
+        numOfBottomWindows++;
+    }
+    switch (numOfBottomWindows)
     {
         case BOTTOM_FULL_SCREEN_POSITION:
         {
@@ -53,9 +54,14 @@
     }
 }
 
-+ (void)reLayoutTopWindowsPosition
++ (void)reLayoutTopWindowsPositionWhenThisWindowTop: (NSWindow *)aWindow
 {
-    switch ([WindowStateManager getInstance].numOfTopWindows)
+    NSInteger numOfTopWindows = [WindowStateManager getInstance].numOfTopWindows;
+    if (aWindow.level != kCGFloatingWindowLevel)
+    {
+        numOfTopWindows++;
+    }
+    switch (numOfTopWindows)
     {
         case TOP_RIGHT_SCREEN_POSITION:
         {

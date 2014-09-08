@@ -71,6 +71,7 @@
     if (originalWindowStateItem != nil)
     {
         [WindowPositionManager resumeWindowStateAccordingWindowStateItem:originalWindowStateItem];
+        [[WindowStateManager getInstance] removeElement:originalWindowStateItem];
     }
 }
 
@@ -119,12 +120,12 @@
 
 - (void)reLayoutWindowsbottomAlways
 {
-    [WindowPositionManager reLayoutBottomWindowsPosition];
+    [WindowPositionManager reLayoutBottomWindowsPositionWhenThisWindowBottom:self.currentWindow];
 }
 
 - (void)reLayoutWindowsTopAlways
 {
-    [WindowPositionManager reLayoutTopWindowsPosition];
+    [WindowPositionManager reLayoutTopWindowsPositionWhenThisWindowTop:self.currentWindow];
 }
 
 - (void)spinCurrentWindowToDesktopUnderIcon:(BOOL)isUnderIcon responseToUserInteraction:(BOOL)interacted

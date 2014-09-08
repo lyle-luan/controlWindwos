@@ -19,6 +19,6 @@
 + (WindowStateManager *)getInstance;
 - (void)addCurrentWindowToManager: (NSWindow *)aWindow;
 - (void)removeElement: (WindowStateItem *)anElement;
--(WindowStateItem *)originalWindowStateItemOfCurrentWindow: (NSWindow *)aWindow;
+- (WindowStateItem *)originalWindowStateItemOfCurrentWindow: (NSWindow *)aWindow;
 
 @end

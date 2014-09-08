@@ -70,8 +70,8 @@ enum WINDOW_TOP_POSITION_ENUM
 
 @interface WindowPositionManager : NSObject
 
-+ (void)reLayoutBottomWindowsPosition;
-+ (void)reLayoutTopWindowsPosition;
++ (void)reLayoutBottomWindowsPositionWhenThisWindowBottom: (NSWindow *)aWindow;
++ (void)reLayoutTopWindowsPositionWhenThisWindowTop: (NSWindow *)aWindow;
 + (void)resumeWindowStateAccordingWindowStateItem: (WindowStateItem *)aWindowStateItem;
 
 @end

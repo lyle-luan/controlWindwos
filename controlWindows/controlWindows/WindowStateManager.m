@@ -58,29 +58,22 @@
 
 - (void)removeElement: (WindowStateItem *)anElement
 {
-//    NSMutableArray *currentWindowStateList = [self searchOriginalWindowStatesListOfWindow:anElement.window];
-//    [currentWindowStateList removeObject:anElement];
-//    if (currentWindowStateList.count == 0)
-//    {
-//        [self.originalWindowStateList removeObject:currentWindowStateList];
-//    }
-}
-
--(WindowStateItem *)originalWindowStateItemOfCurrentWindow: (NSWindow *)aWindow
-{
-    NSMutableArray *currentWindowStateList = [self searchOriginalWindowStatesListOfWindow:aWindow];
-    
-    WindowStateItem *originalWindowStateItem = currentWindowStateList.lastObject;
-    
-    if (originalWindowStateItem != nil)
+    if (anElement != nil)
     {
-        [currentWindowStateList removeLastObject];
-        
+        NSMutableArray *currentWindowStateList = [self searchOriginalWindowStatesListOfWindow:anElement.window];
+        [currentWindowStateList removeObject:anElement];
         if (currentWindowStateList.count == 0)
         {
             [self.windowStateList removeObject:currentWindowStateList];
         }
     }
+}
+
+- (WindowStateItem *)originalWindowStateItemOfCurrentWindow: (NSWindow *)aWindow
+{
+    NSMutableArray *currentWindowStateList = [self searchOriginalWindowStatesListOfWindow:aWindow];
+    
+    WindowStateItem *originalWindowStateItem = currentWindowStateList.lastObject;
     
     return originalWindowStateItem;
 }
@@ -100,7 +93,8 @@
     {
         if (indexArray.count == 0)
         {
-            [indexArray removeObject:indexArray];
+            [windowStateList removeObject:indexArray];
+            continue;
         }
         if (aWindow == ((WindowStateItem *)(indexArray.firstObject)).window)
         {
@@ -116,30 +110,35 @@
 
 - (NSInteger)numOfWindows: (BOOL)topYesOrBottomNo
 {
-    NSInteger numOfWindowsTop    = 0;
-    NSInteger numOfWindowsBottom = 0;
+    numOfBottomWindows = 0;
+    numOfTopWindows = 0;
     
     WindowStateItem *currentWindowStateItem = nil;
     
     for (NSMutableArray *indexArray in windowStateList)
     {
-        currentWindowStateItem = (WindowStateItem *)(indexArray.lastObject);
-        if (currentWindowStateItem.windowLevel == kCGDesktopIconWindowLevel)
+        if (indexArray.count == 0)
         {
-            numOfWindowsBottom++;
+            [windowStateList removeObject:indexArray];
+            continue;
         }
-        else if(currentWindowStateItem.windowLevel == kCGFloatingWindowLevel)
+        currentWindowStateItem = (WindowStateItem *)(indexArray.lastObject);
+        if (currentWindowStateItem.window.level == kCGDesktopIconWindowLevel)
         {
-            numOfWindowsTop++;
+            numOfBottomWindows++;
+        }
+        else if (currentWindowStateItem.window.level == kCGFloatingWindowLevel)
+        {
+            numOfTopWindows++;
         }
     }
     if (topYesOrBottomNo == YES)
     {
-        return numOfWindowsTop;
+        return numOfTopWindows;
     }
     else
     {
-        return numOfWindowsBottom;
+        return numOfBottomWindows;
     }
 }
 
