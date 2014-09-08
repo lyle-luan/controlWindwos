@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "WindowStateItem.h"
 
-enum WINDOW_POSITION_ENUM
+enum WINDOW_BOTTOM_POSITION_ENUM
 {
 //    -------------------------------
 //    |                             |
@@ -19,7 +20,7 @@ enum WINDOW_POSITION_ENUM
 //    |                             |
 //    |                             |
 //    -------------------------------
-    FULL_SCREEN_POSITION = 1,
+    BOTTOM_FULL_SCREEN_POSITION = 1,
 //    -------------------------------
 //    |              |              |
 //    |              |              |
@@ -29,7 +30,7 @@ enum WINDOW_POSITION_ENUM
 //    |              |              |
 //    |              |              |
 //    -------------------------------
-    LEFT_RIGHT_POSITION,
+    BOTTOM_LEFT_RIGHT_POSITION,
 //    -------------------------------
 //    |              |              |
 //    |              |  right  top  |
@@ -40,12 +41,37 @@ enum WINDOW_POSITION_ENUM
 //    |              |              |
 //    -------------------------------
     
-    LEFT_RIGHT_TOP_RIGHT_BOTTOM_POSITION,
+    BOTTOM_LEFT_RIGHT_TOP_RIGHT_BOTTOM_POSITION,
+};
+
+enum WINDOW_TOP_POSITION_ENUM
+{
+    //    -------------------------------
+    //    |              |              |
+    //    |              |              |
+    //    |              |              |
+    //    |              |     right    |
+    //    |              |              |
+    //    |              |              |
+    //    |              |              |
+    //    -------------------------------
+    TOP_RIGHT_SCREEN_POSITION = 1,
+    //    -------------------------------
+    //    |              |              |
+    //    |              |  right  top  |
+    //    |              |              |
+    //    |              |--------------|
+    //    |              |              |
+    //    |              | right bottom |
+    //    |              |              |
+    //    -------------------------------
+    TOP_RIGHT_TOP_RIGHT_BOTTOM_POSITION,
 };
 
 @interface WindowPositionManager : NSObject
 
-+ (void)reLayoutWindowsPosition;
-+ (void)reLayoutWindowPositionToRight;
++ (void)reLayoutBottomWindowsPosition;
++ (void)reLayoutTopWindowsPosition;
++ (void)resumeWindowStateAccordingWindowStateItem: (WindowStateItem *)aWindowStateItem;
 
 @end

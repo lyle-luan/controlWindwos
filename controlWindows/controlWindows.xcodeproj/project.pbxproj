@@ -21,8 +21,8 @@
 		DD2ECADD19A0A30A00AECFC7 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD2ECADC19A0A30A00AECFC7 /* Carbon.framework */; };
 		DD2ECAE019A1D4AB00AECFC7 /* HotKeyController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD2ECADF19A1D4AB00AECFC7 /* HotKeyController.m */; };
 		DD2ECAE319A1D6C400AECFC7 /* WindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD2ECAE219A1D6C400AECFC7 /* WindowController.m */; };
-		DD2ECAED19A2E7CD00AECFC7 /* OriginalWindowStateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DD2ECAEC19A2E7CD00AECFC7 /* OriginalWindowStateManager.m */; };
-		DD2ECAF019A325A000AECFC7 /* OriginalWindowStateItem.m in Sources */ = {isa = PBXBuildFile; fileRef = DD2ECAEF19A325A000AECFC7 /* OriginalWindowStateItem.m */; };
+		DD2ECAED19A2E7CD00AECFC7 /* WindowStateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DD2ECAEC19A2E7CD00AECFC7 /* WindowStateManager.m */; };
+		DD2ECAF019A325A000AECFC7 /* WindowStateItem.m in Sources */ = {isa = PBXBuildFile; fileRef = DD2ECAEF19A325A000AECFC7 /* WindowStateItem.m */; };
 		DD63833B19A32F65002A01A8 /* WindowPositionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DD63833A19A32F65002A01A8 /* WindowPositionManager.m */; };
 /* End PBXBuildFile section */
 
@@ -60,13 +60,13 @@
 		DD2ECADE19A1D4AB00AECFC7 /* HotKeyController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HotKeyController.h; sourceTree = "<group>"; };
 		DD2ECADF19A1D4AB00AECFC7 /* HotKeyController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HotKeyController.m; sourceTree = "<group>"; };
 		DD2ECAE119A1D6C400AECFC7 /* WindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WindowController.h; sourceTree = "<group>"; };
-		DD2ECAE219A1D6C400AECFC7 /* WindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WindowController.m; sourceTree = "<group>"; };
-		DD2ECAEB19A2E7CD00AECFC7 /* OriginalWindowStateManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OriginalWindowStateManager.h; sourceTree = "<group>"; };
-		DD2ECAEC19A2E7CD00AECFC7 /* OriginalWindowStateManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OriginalWindowStateManager.m; sourceTree = "<group>"; };
-		DD2ECAEE19A325A000AECFC7 /* OriginalWindowStateItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OriginalWindowStateItem.h; sourceTree = "<group>"; };
-		DD2ECAEF19A325A000AECFC7 /* OriginalWindowStateItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OriginalWindowStateItem.m; sourceTree = "<group>"; };
+		DD2ECAE219A1D6C400AECFC7 /* WindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = WindowController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		DD2ECAEB19A2E7CD00AECFC7 /* WindowStateManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = WindowStateManager.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		DD2ECAEC19A2E7CD00AECFC7 /* WindowStateManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = WindowStateManager.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		DD2ECAEE19A325A000AECFC7 /* WindowStateItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WindowStateItem.h; sourceTree = "<group>"; };
+		DD2ECAEF19A325A000AECFC7 /* WindowStateItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WindowStateItem.m; sourceTree = "<group>"; };
 		DD63833919A32F65002A01A8 /* WindowPositionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WindowPositionManager.h; sourceTree = "<group>"; };
-		DD63833A19A32F65002A01A8 /* WindowPositionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WindowPositionManager.m; sourceTree = "<group>"; };
+		DD63833A19A32F65002A01A8 /* WindowPositionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = WindowPositionManager.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		DD90D69D19A874D900259162 /* Toolkits.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Toolkits.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -146,8 +146,8 @@
 				DD2ECADF19A1D4AB00AECFC7 /* HotKeyController.m */,
 				DD2ECAE119A1D6C400AECFC7 /* WindowController.h */,
 				DD2ECAE219A1D6C400AECFC7 /* WindowController.m */,
-				DD2ECAEB19A2E7CD00AECFC7 /* OriginalWindowStateManager.h */,
-				DD2ECAEC19A2E7CD00AECFC7 /* OriginalWindowStateManager.m */,
+				DD2ECAEB19A2E7CD00AECFC7 /* WindowStateManager.h */,
+				DD2ECAEC19A2E7CD00AECFC7 /* WindowStateManager.m */,
 				DD63833919A32F65002A01A8 /* WindowPositionManager.h */,
 				DD63833A19A32F65002A01A8 /* WindowPositionManager.m */,
 			);
@@ -195,8 +195,8 @@
 		DD2ECAEA19A2E74200AECFC7 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				DD2ECAEE19A325A000AECFC7 /* OriginalWindowStateItem.h */,
-				DD2ECAEF19A325A000AECFC7 /* OriginalWindowStateItem.m */,
+				DD2ECAEE19A325A000AECFC7 /* WindowStateItem.h */,
+				DD2ECAEF19A325A000AECFC7 /* WindowStateItem.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -299,10 +299,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DD2ECAED19A2E7CD00AECFC7 /* OriginalWindowStateManager.m in Sources */,
+				DD2ECAED19A2E7CD00AECFC7 /* WindowStateManager.m in Sources */,
 				DD2ECAE019A1D4AB00AECFC7 /* HotKeyController.m in Sources */,
 				DD63833B19A32F65002A01A8 /* WindowPositionManager.m in Sources */,
-				DD2ECAF019A325A000AECFC7 /* OriginalWindowStateItem.m in Sources */,
+				DD2ECAF019A325A000AECFC7 /* WindowStateItem.m in Sources */,
 				DD2ECAE319A1D6C400AECFC7 /* WindowController.m in Sources */,
 				D6EA4AE1198CA9DB00C20E75 /* AppDelegate.m in Sources */,
 				D6EA4ADA198CA9DB00C20E75 /* main.m in Sources */,

@@ -7,37 +7,43 @@
 //
 
 #import "WindowPositionManager.h"
-#import "OriginalWindowStateItem.h"
-#import "OriginalWindowStateManager.h"
+#import "WindowStateItem.h"
+#import "WindowStateManager.h"
 
 @interface WindowPositionManager(WindowPositionManagerPrivate)
 
-+ (void)relayoutFullScreenPosition;
-+ (void)relayoutLeftRightPosition;
-+ (void)relayoutLeftRIghtTopRightBottomPosition;
-+ (void)relayoutRightPosition;
++ (void)relayoutFullScreenBottomPosition;
++ (void)relayoutLeftRightBottomPosition;
++ (void)relayoutLeftRightTopRightBottomPosition;
+
++ (void)relayoutRightTopPosition;
++ (void)relayoutRightTopRightBottomTopPosition;
 
 @end
 
 @implementation WindowPositionManager
 
-+ (void)reLayoutWindowsPosition
++ (void)reLayoutBottomWindowsPosition
 {
-    switch ([[OriginalWindowStateManager getInstance].originalWindowStateList count])
+    //TODO:WindowStateManager -> WindowStateManager
+    //TODO:numOfBottomWindows = [WindowStateManager getInstance].numOfBottomOriginalWindows + currentNumWindows
+    NSInteger numOfBottomWindows = 0;
+    
+    switch ([WindowStateManager getInstance].numOfBottomWindows)
     {
-        case FULL_SCREEN_POSITION:
+        case BOTTOM_FULL_SCREEN_POSITION:
         {
-            [self relayoutFullScreenPosition];
+            [self relayoutFullScreenBottomPosition];
             break;
         }
-        case LEFT_RIGHT_POSITION:
+        case BOTTOM_LEFT_RIGHT_POSITION:
         {
-            [self relayoutLeftRightPosition];
+            [self relayoutLeftRightBottomPosition];
             break;
         }
-        case LEFT_RIGHT_TOP_RIGHT_BOTTOM_POSITION:
+        case BOTTOM_LEFT_RIGHT_TOP_RIGHT_BOTTOM_POSITION:
         {
-            [self relayoutLeftRIghtTopRightBottomPosition];
+            [self relayoutLeftRightTopRightBottomPosition];
             break;
         }
         default:
@@ -47,39 +53,67 @@
     }
 }
 
-+ (void)reLayoutWindowPositionToRight
++ (void)reLayoutTopWindowsPosition
 {
-    [self relayoutRightPosition];
+    switch ([WindowStateManager getInstance].numOfTopWindows)
+    {
+        case TOP_RIGHT_SCREEN_POSITION:
+        {
+            [self relayoutRightTopPosition];
+            break;
+        }
+        case TOP_RIGHT_TOP_RIGHT_BOTTOM_POSITION:
+        {
+            [self relayoutRightTopRightBottomTopPosition];
+            break;
+        }
+        default:
+        {
+            break;
+        }
+    }
+}
+
++ (void)resumeWindowStateAccordingWindowStateItem: (WindowStateItem *)aWindowStateItem
+{
+    [aWindowStateItem.window setFrame:aWindowStateItem.windowFrame display:YES animate:YES];
+    [aWindowStateItem.window setLevel:aWindowStateItem.windowLevel];
+    [aWindowStateItem.window setMovable:aWindowStateItem.isMovable];
 }
 
 @end
 
 @implementation WindowPositionManager(WindowPositionManagerPrivate)
 
-+ (void)relayoutFullScreenPosition
++ (void)relayoutFullScreenBottomPosition
 {
-    NSMutableArray *fullScreenWindowList = [OriginalWindowStateManager getInstance].originalWindowStateList.firstObject;
-    OriginalWindowStateItem *fullScreenWindowStateItem = fullScreenWindowList.lastObject;
+    NSMutableArray *fullScreenWindowList = [WindowStateManager getInstance].windowStateList.firstObject;
+    WindowStateItem *fullScreenWindowStateItem = fullScreenWindowList.lastObject;
     NSWindow *fullScreenWindow = fullScreenWindowStateItem.window;
     [fullScreenWindow setFrame:[self fullScreenPosition] display:YES animate:YES];
 }
 
-+ (void)relayoutLeftRightPosition
++ (void)relayoutLeftRightBottomPosition
 {
     
 }
 
-+ (void)relayoutLeftRIghtTopRightBottomPosition
++ (void)relayoutLeftRightTopRightBottomPosition
 {
     
 }
 
-+ (void)relayoutRightPosition
++ (void)relayoutRightTopPosition
 {
-    NSMutableArray *rightScreenWindowList = [OriginalWindowStateManager getInstance].originalWindowStateList.firstObject;
-    OriginalWindowStateItem *rightScreenWindowStateItem = rightScreenWindowList.lastObject;
+    NSMutableArray *rightScreenWindowList = [WindowStateManager getInstance].windowStateList.firstObject;
+    WindowStateItem *rightScreenWindowStateItem = rightScreenWindowList.lastObject;
     NSWindow *fullScreenWindow = rightScreenWindowStateItem.window;
     [fullScreenWindow setFrame:[self rightScreenPosition] display:YES animate:YES];
+}
+
++ (void)relayoutRightTopRightBottomTopPosition
+{
+    
 }
 
 + (NSRect)rightScreenPosition

@@ -1,18 +1,18 @@
 //
-//  OriginalWindowStateItem.m
+//  WindowStateItem.m
 //  controlWindows
 //
 //  Created by APP on 14-8-19.
 //  Copyright (c) 2014年 ll. All rights reserved.
 //
 
-#import "OriginalWindowStateItem.h"
+#import "WindowStateItem.h"
 
-@implementation OriginalWindowStateItem
+@implementation WindowStateItem
 
 @synthesize window;
-@synthesize originalFrame;
-@synthesize originalWindowLevel;
+@synthesize windowFrame;
+@synthesize windowLevel;
 @synthesize isMovable;
 @synthesize isResizable;
 
@@ -22,8 +22,8 @@
     if (self)
     {
         window = aWindow;
-        originalFrame = aWindow.frame;
-        originalWindowLevel = aWindow.level;
+        windowFrame = aWindow.frame;
+        windowLevel = aWindow.level;
         isMovable = aWindow.isMovable;
         isResizable = aWindow.isResizable;
     }

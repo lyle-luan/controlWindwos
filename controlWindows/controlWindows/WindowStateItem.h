@@ -1,5 +1,5 @@
 //
-//  OriginalWindowStateItem.h
+//  WindowStateItem.h
 //  controlWindows
 //
 //  Created by APP on 14-8-19.
@@ -8,11 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-@interface OriginalWindowStateItem : NSObject
+@interface WindowStateItem : NSObject
 
 @property (nonatomic, readonly) NSWindow *window;
-@property (nonatomic, readonly) NSRect originalFrame;
-@property (nonatomic, readonly) NSInteger originalWindowLevel;
+@property (nonatomic, readonly) NSRect windowFrame;
+@property (nonatomic, readonly) NSInteger windowLevel;
 @property (nonatomic, readonly) BOOL isMovable;
 @property (nonatomic, readonly) BOOL isResizable;
 @property (nonatomic, readwrite) NSInteger position;

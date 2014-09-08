@@ -7,19 +7,19 @@
 //
 
 #import "WindowController.h"
-#import "OriginalWindowStateItem.h"
-#import "OriginalWindowStateManager.h"
+#import "WindowStateItem.h"
+#import "WindowStateManager.h"
 #import "WindowPositionManager.h"
 
 @interface WindowController(WindowControllerPrivate)
 
 - (NSWindow *)topWindow;
-- (void)backupOriginalState;
-- (void)reLayoutWindows;
+- (void)backupCurrentWindowState;
+- (void)reLayoutWindowsbottomAlways;
 - (void)spinCurrentWindowToDesktopUnderIcon:(BOOL)isUnderIcon responseToUserInteraction:(BOOL)interacted;
 - (void)cantMoveCurrentWindow;
 - (void)canMoveCurrentWindow;
-- (void)reLayoutWindowTopAlways;
+- (void)reLayoutWindowsTopAlways;
 - (void)floatCurrentWindowTop;
 
 @end
@@ -44,30 +44,17 @@
 - (void)dontBotherMeWindow
 {
     self.currentWindow = [self topWindow];
-    [self backupOriginalState];
-    [self reLayoutWindows];
+    [self backupCurrentWindowState];
+    [self reLayoutWindowsbottomAlways];
     [self spinCurrentWindowToDesktopUnderIcon:NO responseToUserInteraction:YES];
     [self cantMoveCurrentWindow];
-}
-
-- (void)comeBackWindow
-{
-    self.currentWindow = [self topWindow];
-    OriginalWindowStateItem *originalWindowStateItem = [[OriginalWindowStateManager getInstance] originalWindowStateItemOfCurrentWindow: self.currentWindow];
-    if (originalWindowStateItem != nil)
-    {
-        [self.currentWindow setFrame:originalWindowStateItem.originalFrame display:YES animate:YES];
-        [self.currentWindow setLevel:originalWindowStateItem.originalWindowLevel];
-        [self.currentWindow setMovable:originalWindowStateItem.isMovable];
-        [[OriginalWindowStateManager getInstance] removeElement:originalWindowStateItem];
-    }
 }
 
 - (void)needAlltimeWindow
 {
     self.currentWindow = [self topWindow];
-    [self backupOriginalState];
-    [self reLayoutWindowTopAlways];
+    [self backupCurrentWindowState];
+    [self reLayoutWindowsTopAlways];
     [self floatCurrentWindowTop];
     [self canMoveCurrentWindow];
 }
@@ -75,6 +62,16 @@
 - (void)notNeedAlltimeWindow
 {
     
+}
+
+- (void)comeBackWindow
+{
+    self.currentWindow = [self topWindow];
+    WindowStateItem *originalWindowStateItem = [[WindowStateManager getInstance] originalWindowStateItemOfCurrentWindow: self.currentWindow];
+    if (originalWindowStateItem != nil)
+    {
+        [WindowPositionManager resumeWindowStateAccordingWindowStateItem:originalWindowStateItem];
+    }
 }
 
 @end
@@ -115,34 +112,32 @@
     return nil;
 }
 
-- (void)backupOriginalState
+- (void)backupCurrentWindowState
 {
-    OriginalWindowStateItem *newItem = nil;
-    newItem = [[OriginalWindowStateItem alloc] initWithNSWindow:self.currentWindow];
-    [[OriginalWindowStateManager getInstance] addElement:newItem];
+    [[WindowStateManager getInstance] addCurrentWindowToManager:self.currentWindow];
 }
 
-- (void)reLayoutWindows
+- (void)reLayoutWindowsbottomAlways
 {
-    [WindowPositionManager reLayoutWindowsPosition];
+    [WindowPositionManager reLayoutBottomWindowsPosition];
 }
 
-- (void)reLayoutWindowTopAlways
+- (void)reLayoutWindowsTopAlways
 {
-    [WindowPositionManager reLayoutWindowPositionToRight];
+    [WindowPositionManager reLayoutTopWindowsPosition];
 }
 
 - (void)spinCurrentWindowToDesktopUnderIcon:(BOOL)isUnderIcon responseToUserInteraction:(BOOL)interacted
 {
     if (isUnderIcon == NO)
     {
-        [self.currentWindow setLevel:kCGDesktopIconWindowLevel+1];
+        [self.currentWindow setLevel:kCGDesktopIconWindowLevel];
     }
 }
 
 - (void)floatCurrentWindowTop
 {
-    [self.currentWindow setLevel:NSFloatingWindowLevel];
+    [self.currentWindow setLevel:kCGFloatingWindowLevel];
 }
 
 - (void)cantMoveCurrentWindow
