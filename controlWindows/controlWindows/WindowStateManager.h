@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
+#define WINDOW_STATE_BOTTOM     (kCGDesktopIconWindowLevel)
+#define WINDOW_STATE_TOP        (kCGFloatingWindowLevel)
+
 @class WindowStateItem;
 
 @interface WindowStateManager : NSObject

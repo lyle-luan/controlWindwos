@@ -26,7 +26,7 @@
 + (void)reLayoutBottomWindowsPositionWhenThisWindowBottom: (NSWindow *)aWindow
 {
     NSInteger numOfBottomWindows = [WindowStateManager getInstance].numOfBottomWindows;
-    if (aWindow.level != kCGDesktopIconWindowLevel)
+    if (aWindow.level != WINDOW_STATE_BOTTOM)
     {
         numOfBottomWindows++;
     }
@@ -57,7 +57,7 @@
 + (void)reLayoutTopWindowsPositionWhenThisWindowTop: (NSWindow *)aWindow
 {
     NSInteger numOfTopWindows = [WindowStateManager getInstance].numOfTopWindows;
-    if (aWindow.level != kCGFloatingWindowLevel)
+    if (aWindow.level != WINDOW_STATE_TOP)
     {
         numOfTopWindows++;
     }

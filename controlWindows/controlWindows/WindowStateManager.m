@@ -123,11 +123,11 @@
             continue;
         }
         currentWindowStateItem = (WindowStateItem *)(indexArray.lastObject);
-        if (currentWindowStateItem.window.level == kCGDesktopIconWindowLevel)
+        if (currentWindowStateItem.window.level == WINDOW_STATE_BOTTOM)
         {
             numOfBottomWindows++;
         }
-        else if (currentWindowStateItem.window.level == kCGFloatingWindowLevel)
+        else if (currentWindowStateItem.window.level == WINDOW_STATE_TOP)
         {
             numOfTopWindows++;
         }

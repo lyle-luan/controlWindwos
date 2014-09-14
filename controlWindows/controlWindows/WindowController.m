@@ -132,13 +132,13 @@
 {
     if (isUnderIcon == NO)
     {
-        [self.currentWindow setLevel:kCGDesktopIconWindowLevel];
+        [self.currentWindow setLevel:WINDOW_STATE_BOTTOM];
     }
 }
 
 - (void)floatCurrentWindowTop
 {
-    [self.currentWindow setLevel:kCGFloatingWindowLevel];
+    [self.currentWindow setLevel:WINDOW_STATE_TOP];
 }
 
 - (void)cantMoveCurrentWindow
