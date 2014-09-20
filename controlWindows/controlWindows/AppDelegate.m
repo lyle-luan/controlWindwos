@@ -11,9 +11,39 @@
 
 @implementation AppDelegate
 
+@synthesize statusItem;
+@synthesize welcomeWindow;
+@synthesize statusItemMenu;
+
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
+    statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength: NSVariableStatusItemLength];
+    NSImage *statusImage = [NSImage imageNamed:@"StatusItem"];
+    [statusImage setTemplate:YES];
+    statusItem.image = statusImage;
+    statusItem.highlightMode = YES;
+    [statusItem setMenu:statusItemMenu];
+    
     [HotKeyController engineHotKeyListen];
+    if (YES)
+    {
+        [[NSApplication sharedApplication] runModalForWindow:self.welcomeWindow];
+    }
+}
+
+- (IBAction)okButtonPushed:(id)sender
+{
+    [self.welcomeWindow orderOut:self];
+}
+
+- (IBAction)aboutMenuItemPushed:(id)sender
+{
+    NSLog(@"about");
+}
+
+- (IBAction)updateMenuItem:(id)sender
+{
+    NSLog(@"update");
 }
 
 @end
