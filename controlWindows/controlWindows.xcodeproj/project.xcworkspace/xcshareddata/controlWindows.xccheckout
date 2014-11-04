@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>CE40EC56-BE41-4180-AADA-3C23793008C0</string>
+	<key>IDESourceControlProjectName</key>
+	<string>controlWindows</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>4E3A164897C4FF486BA828912E4F451B426D87DF</key>
+		<string>https://github.com/lyle-luan/controlWindwos.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>controlWindows/controlWindows.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>4E3A164897C4FF486BA828912E4F451B426D87DF</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/lyle-luan/controlWindwos.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>4E3A164897C4FF486BA828912E4F451B426D87DF</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>4E3A164897C4FF486BA828912E4F451B426D87DF</string>
+			<key>IDESourceControlWCCName</key>
+			<string>controlWindwos</string>
+		</dict>
+	</array>
+</dict>
+</plist>

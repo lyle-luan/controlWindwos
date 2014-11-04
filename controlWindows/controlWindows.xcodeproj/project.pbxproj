@@ -24,6 +24,9 @@
 		DD2ECAED19A2E7CD00AECFC7 /* WindowStateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DD2ECAEC19A2E7CD00AECFC7 /* WindowStateManager.m */; };
 		DD2ECAF019A325A000AECFC7 /* WindowStateItem.m in Sources */ = {isa = PBXBuildFile; fileRef = DD2ECAEF19A325A000AECFC7 /* WindowStateItem.m */; };
 		DD63833B19A32F65002A01A8 /* WindowPositionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DD63833A19A32F65002A01A8 /* WindowPositionManager.m */; };
+		DDA4E8AB1A08844D001F484C /* controlWindows.sdef in Resources */ = {isa = PBXBuildFile; fileRef = DDA4E8AA1A08844D001F484C /* controlWindows.sdef */; };
+		DDA4E8AE1A08A42E001F484C /* controlWindowsOSAX.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA4E8AD1A08A42E001F484C /* controlWindowsOSAX.m */; };
+		DDA4E8B41A08A7E5001F484C /* ScriptingBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDA4E8B31A08A7E5001F484C /* ScriptingBridge.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,6 +36,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = D6EA4AC9198CA9DA00C20E75;
 			remoteInfo = controlWindows;
+		};
+		DDA4E8AF1A08A4F0001F484C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D6EA4AC2198CA9DA00C20E75 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DDA4E8A21A087FA8001F484C;
+			remoteInfo = controlWindowsOSAX;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -68,6 +78,11 @@
 		DD63833919A32F65002A01A8 /* WindowPositionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WindowPositionManager.h; sourceTree = "<group>"; };
 		DD63833A19A32F65002A01A8 /* WindowPositionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = WindowPositionManager.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		DD90D69D19A874D900259162 /* Toolkits.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Toolkits.h; sourceTree = "<group>"; };
+		DDA4E8A31A087FA8001F484C /* controlWindowsOSAX.osax */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = controlWindowsOSAX.osax; sourceTree = BUILT_PRODUCTS_DIR; };
+		DDA4E8A61A087FA8001F484C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DDA4E8AA1A08844D001F484C /* controlWindows.sdef */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = controlWindows.sdef; sourceTree = "<group>"; };
+		DDA4E8AD1A08A42E001F484C /* controlWindowsOSAX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = controlWindowsOSAX.m; sourceTree = "<group>"; };
+		DDA4E8B31A08A7E5001F484C /* ScriptingBridge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScriptingBridge.framework; path = System/Library/Frameworks/ScriptingBridge.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +90,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DDA4E8B41A08A7E5001F484C /* ScriptingBridge.framework in Frameworks */,
 				DD2ECADD19A0A30A00AECFC7 /* Carbon.framework in Frameworks */,
 				D6EA4ACE198CA9DA00C20E75 /* Cocoa.framework in Frameworks */,
 			);
@@ -89,6 +105,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		DDA4E8A01A087FA8001F484C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -97,6 +120,7 @@
 			children = (
 				D6EA4AD3198CA9DB00C20E75 /* controlWindows */,
 				D6EA4AF1198CA9DB00C20E75 /* controlWindowsTests */,
+				DDA4E8A41A087FA8001F484C /* controlWindowsOSAX */,
 				D6EA4ACC198CA9DA00C20E75 /* Frameworks */,
 				D6EA4ACB198CA9DA00C20E75 /* Products */,
 			);
@@ -107,6 +131,7 @@
 			children = (
 				D6EA4ACA198CA9DA00C20E75 /* controlWindows.app */,
 				D6EA4AEB198CA9DB00C20E75 /* controlWindowsTests.xctest */,
+				DDA4E8A31A087FA8001F484C /* controlWindowsOSAX.osax */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -114,6 +139,7 @@
 		D6EA4ACC198CA9DA00C20E75 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DDA4E8B31A08A7E5001F484C /* ScriptingBridge.framework */,
 				DD2ECADC19A0A30A00AECFC7 /* Carbon.framework */,
 				D6EA4ACD198CA9DA00C20E75 /* Cocoa.framework */,
 				D6EA4AEC198CA9DB00C20E75 /* XCTest.framework */,
@@ -201,6 +227,24 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
+		DDA4E8A41A087FA8001F484C /* controlWindowsOSAX */ = {
+			isa = PBXGroup;
+			children = (
+				DDA4E8AD1A08A42E001F484C /* controlWindowsOSAX.m */,
+				DDA4E8A51A087FA8001F484C /* Supporting Files */,
+			);
+			path = controlWindowsOSAX;
+			sourceTree = "<group>";
+		};
+		DDA4E8A51A087FA8001F484C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				DDA4E8A61A087FA8001F484C /* Info.plist */,
+				DDA4E8AA1A08844D001F484C /* controlWindows.sdef */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -215,6 +259,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				DDA4E8B01A08A4F0001F484C /* PBXTargetDependency */,
 			);
 			name = controlWindows;
 			productName = controlWindows;
@@ -239,6 +284,23 @@
 			productReference = D6EA4AEB198CA9DB00C20E75 /* controlWindowsTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		DDA4E8A21A087FA8001F484C /* controlWindowsOSAX */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DDA4E8A91A087FA8001F484C /* Build configuration list for PBXNativeTarget "controlWindowsOSAX" */;
+			buildPhases = (
+				DDA4E89F1A087FA8001F484C /* Sources */,
+				DDA4E8A01A087FA8001F484C /* Frameworks */,
+				DDA4E8A11A087FA8001F484C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = controlWindowsOSAX;
+			productName = controlWindowsOSAX;
+			productReference = DDA4E8A31A087FA8001F484C /* controlWindowsOSAX.osax */;
+			productType = "com.apple.product-type.bundle";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -250,6 +312,9 @@
 				TargetAttributes = {
 					D6EA4AEA198CA9DB00C20E75 = {
 						TestTargetID = D6EA4AC9198CA9DA00C20E75;
+					};
+					DDA4E8A21A087FA8001F484C = {
+						CreatedOnToolsVersion = 6.1;
 					};
 				};
 			};
@@ -268,6 +333,7 @@
 			targets = (
 				D6EA4AC9198CA9DA00C20E75 /* controlWindows */,
 				D6EA4AEA198CA9DB00C20E75 /* controlWindowsTests */,
+				DDA4E8A21A087FA8001F484C /* controlWindowsOSAX */,
 			);
 		};
 /* End PBXProject section */
@@ -289,6 +355,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				D6EA4AF6198CA9DB00C20E75 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DDA4E8A11A087FA8001F484C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DDA4E8AB1A08844D001F484C /* controlWindows.sdef in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -317,6 +391,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		DDA4E89F1A087FA8001F484C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DDA4E8AE1A08A42E001F484C /* controlWindowsOSAX.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -324,6 +406,11 @@
 			isa = PBXTargetDependency;
 			target = D6EA4AC9198CA9DA00C20E75 /* controlWindows */;
 			targetProxy = D6EA4AEF198CA9DB00C20E75 /* PBXContainerItemProxy */;
+		};
+		DDA4E8B01A08A4F0001F484C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DDA4E8A21A087FA8001F484C /* controlWindowsOSAX */;
+			targetProxy = DDA4E8AF1A08A4F0001F484C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -499,6 +586,42 @@
 			};
 			name = Release;
 		};
+		DDA4E8A71A087FA8001F484C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = controlWindowsOSAX/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = osax;
+			};
+			name = Debug;
+		};
+		DDA4E8A81A087FA8001F484C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				INFOPLIST_FILE = controlWindowsOSAX/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = osax;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -525,6 +648,15 @@
 			buildConfigurations = (
 				D6EA4AFF198CA9DB00C20E75 /* Debug */,
 				D6EA4B00198CA9DB00C20E75 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DDA4E8A91A087FA8001F484C /* Build configuration list for PBXNativeTarget "controlWindowsOSAX" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DDA4E8A71A087FA8001F484C /* Debug */,
+				DDA4E8A81A087FA8001F484C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
