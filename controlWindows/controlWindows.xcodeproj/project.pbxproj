@@ -24,7 +24,7 @@
 		DD2ECAED19A2E7CD00AECFC7 /* WindowStateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DD2ECAEC19A2E7CD00AECFC7 /* WindowStateManager.m */; };
 		DD2ECAF019A325A000AECFC7 /* WindowStateItem.m in Sources */ = {isa = PBXBuildFile; fileRef = DD2ECAEF19A325A000AECFC7 /* WindowStateItem.m */; };
 		DD63833B19A32F65002A01A8 /* WindowPositionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DD63833A19A32F65002A01A8 /* WindowPositionManager.m */; };
-		DDA4E8AB1A08844D001F484C /* controlWindows.sdef in Resources */ = {isa = PBXBuildFile; fileRef = DDA4E8AA1A08844D001F484C /* controlWindows.sdef */; };
+		DD83F6FE1A09FB8A000FD1BC /* controlWindows.sdef in Resources */ = {isa = PBXBuildFile; fileRef = DD83F6FD1A09FB8A000FD1BC /* controlWindows.sdef */; };
 		DDA4E8AE1A08A42E001F484C /* controlWindowsOSAX.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA4E8AD1A08A42E001F484C /* controlWindowsOSAX.m */; };
 		DDA4E8B41A08A7E5001F484C /* ScriptingBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDA4E8B31A08A7E5001F484C /* ScriptingBridge.framework */; };
 /* End PBXBuildFile section */
@@ -77,10 +77,10 @@
 		DD2ECAEF19A325A000AECFC7 /* WindowStateItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WindowStateItem.m; sourceTree = "<group>"; };
 		DD63833919A32F65002A01A8 /* WindowPositionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WindowPositionManager.h; sourceTree = "<group>"; };
 		DD63833A19A32F65002A01A8 /* WindowPositionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = WindowPositionManager.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		DD83F6FD1A09FB8A000FD1BC /* controlWindows.sdef */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = controlWindows.sdef; sourceTree = "<group>"; };
 		DD90D69D19A874D900259162 /* Toolkits.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Toolkits.h; sourceTree = "<group>"; };
 		DDA4E8A31A087FA8001F484C /* controlWindowsOSAX.osax */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = controlWindowsOSAX.osax; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDA4E8A61A087FA8001F484C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DDA4E8AA1A08844D001F484C /* controlWindows.sdef */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = controlWindows.sdef; sourceTree = "<group>"; };
 		DDA4E8AD1A08A42E001F484C /* controlWindowsOSAX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = controlWindowsOSAX.m; sourceTree = "<group>"; };
 		DDA4E8B31A08A7E5001F484C /* ScriptingBridge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScriptingBridge.framework; path = System/Library/Frameworks/ScriptingBridge.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -239,8 +239,8 @@
 		DDA4E8A51A087FA8001F484C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				DD83F6FD1A09FB8A000FD1BC /* controlWindows.sdef */,
 				DDA4E8A61A087FA8001F484C /* Info.plist */,
-				DDA4E8AA1A08844D001F484C /* controlWindows.sdef */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -362,7 +362,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DDA4E8AB1A08844D001F484C /* controlWindows.sdef in Resources */,
+				DD83F6FE1A09FB8A000FD1BC /* controlWindows.sdef in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
