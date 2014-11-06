@@ -11,20 +11,13 @@
 #import <ScriptingBridge/ScriptingBridge.h>
 //#import <Carbon/Carbon.h>
 
-@implementation AppDelegate
+#import "StatusItemOnPanelController.h"
 
-@synthesize statusItem;
-@synthesize welcomeWindow;
-@synthesize statusItemMenu;
+@implementation AppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-    statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength: NSVariableStatusItemLength];
-    NSImage *statusImage = [NSImage imageNamed:@"StatusItem"];
-    [statusImage setTemplate:YES];
-    statusItem.image = statusImage;
-    statusItem.highlightMode = YES;
-    [statusItem setMenu:statusItemMenu];
+    
     
     [HotKeyController engineHotKeyListen];
     

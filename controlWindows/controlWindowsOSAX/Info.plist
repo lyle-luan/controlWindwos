@@ -33,11 +33,11 @@
 			<key>cnwdload</key>
 			<dict>
 				<key>Context</key>
-				<string>Process</string>
+				<string>User</string>
 				<key>Handler</key>
 				<string>loadPlugin</string>
 				<key>ThreadSafe</key>
-				<false/>
+				<true/>
 			</dict>
 		</dict>
 	</dict>

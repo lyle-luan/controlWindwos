@@ -11,17 +11,7 @@
 __attribute__((constructor))
 static void cwInitializer()
 {
-    @autoreleasepool {
-        dispatch_async(dispatch_get_main_queue(), ^(void) {
-            NSLog(@"cwInitializer");
-        });
-    }
-}
 
-__attribute__((destructor))
-static void cwUnload()
-{
-    NSLog(@"cwUnload");
 }
 
 OSErr loadPlugin(const AppleEvent *ev, AppleEvent *reply, long refcon)

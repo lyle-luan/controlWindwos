@@ -10,9 +10,6 @@
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 
-@property (nonatomic, readwrite) NSStatusItem *statusItem;
 @property (weak) IBOutlet NSWindow *welcomeWindow;
-
-@property (weak) IBOutlet NSMenu *statusItemMenu;
 
 @end
